@@ -1,10 +1,14 @@
 import React from 'react';
-import ReactDom from 'react-dom/client';
+// import ReactDom from 'react-dom/client'; case sensitive
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
 
 //(39:25) - import App.js
 import App from './App';
+
+//(48:52) - import css
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root')); 
 

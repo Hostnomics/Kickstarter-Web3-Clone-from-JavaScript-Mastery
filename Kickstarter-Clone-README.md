@@ -10,7 +10,31 @@
 
    > npm instal dotenv
 
-3.
+3. Add React Router Dom:
+
+   > npm install react-router-dom
+
+4. Deploy Solidity Contract:
+
+   > npm run deploy
+
+5. Create frontend app, from within the `/client` directory: `(34:35)`
+
+   > npx thirdweb create --app
+
+6. Install TailwindCSS. See the [Tail wind docs for vite](https://tailwindcss.com/docs/guides/vite)
+
+   > npm install -D tailwindcss postcss autoprefixer
+
+   > npx tailwindcss init -p
+
+7. Run a local dev server: _(CTRL/CMD Click the link provided)_
+
+   > npm run dev
+
+---
+
+---
 
 ## Road Map
 
@@ -150,7 +174,48 @@ module.exports = {
 
 5. Created **index.css**. `(-41:49)`
 
+6. Added assets folder
+
+7. Added src/constants/index.js `(42:41)`
+
+8. `(42:57)` - Created `src/context` directory for our **React context API** which will allow us to use the ThirdWeb logic from within our entire application.
+
+9. `(43:23)` - Created `utils/index.js`
+
+   - (43:27) - Utility Functions - functions we use often across our app
+
+10. `(44:15)` - start building out `App.jsx`
+
+    - 45:45 - tailwind docs search https://tailwindcss.com/docs/installation
+
+    - (47:40) - fix vite - tailwind connection
+
+      - (47:55) in **tailwind.config.js** add theme setting
+        - test if tailwind working in App.js (48:14):
+          - `<p className="font-xl font-bold">TEST</p>` (not responding)
+        - (48:48) - **Solution** - import the `index.css` file in **main.jsx**.
+          - `import './index.css';`
+
+    - (49:20) - Set up Routes and Route. First Route to Home Component
+
+11. (49:50) - Build Components (Navbar, Sidebar) and Pages (Home, Profile, CampaignDetails, CreateCampaign)
+
+    - `(49:56)` - Build `pages/Home.jsx` and (Profile.jsx, CampaignDetails.jsx and CreateCampaign.jsx)
+
+      - `(50:34)` - we **export the components from the pages directory** via an **index.js** file in `/pages`
+      - create an export statement in **index.js** for each component:
+        > `export {default as Home} from '.Home';`
+        - import pages into `src/App.js`
+          > `import { CampaignDetails, CreateCampaign, Home, Profile } from './pages';`
+
+    - `(~52 min)` - create Navbar.jsx and Sidebar.jsx in the `/components` directory and export with `components/index.js`
+
+    - `(53:26)` - Build **components/Sidebar.jsx**
+      -
+
 ---
+
+d
 
 **NFT Taxes** to keep in mind:
 
