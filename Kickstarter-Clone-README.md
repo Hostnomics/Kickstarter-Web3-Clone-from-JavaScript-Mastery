@@ -211,7 +211,82 @@ module.exports = {
     - `(~52 min)` - create Navbar.jsx and Sidebar.jsx in the `/components` directory and export with `components/index.js`
 
     - `(53:26)` - Build **components/Sidebar.jsx**
-      -
+      - `(-1:02:28)` - completed the mapping over each link of the sidebar
+        - the `navlinks` is defined as a json object in our `/constants/index.js`
+          - `export const navlinks = [{...}]`
+
+```js
+//redacted example:
+export const navlinks = [
+  {
+    name: "campaign",
+    imgUrl: createCampaign,
+    link: "/create-campaign",
+  },
+  {
+    name: "payment",
+    imgUrl: payment,
+    link: "/",
+    disabled: true,
+  },
+];
+```
+
+12. `(1:03:48)` - Build Navbar
+
+    - `(1:12:30)` - if/else statement in react
+
+```js
+                  handleClick={() => {
+                    if(address) navigate('create-campaign')
+                    else 'ConnectWallet()' //replace later with connect wallet function (-1:12:45)
+                  }}
+```
+
+- `(1:18:45 - 1:20:40)` Conditional logic - show/hide mobile menu:
+
+```js
+{
+  /* (1:18:47)- mobile menu (three lines) button, opens menu on click/tap */
+}
+<img
+  src={menu}
+  alt="menu"
+  className="w-[34px] h-[px] object-contain cursor-pointer"
+  onClick={() => setToggleDrawer(!toggleDrawer)}
+/>;
+
+{
+  /* (1:19:36) - Mobile Menu, shows when icon above clicked/tapped. Transition 700ms */
+}
+<div
+  className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shawdow-secondary py-4 
+                  ${
+                    !toggleDrawer ? "-translate-y-[100vh]" : "translate-y-0"
+                  } transition-all duration-700`}
+></div>;
+```
+
+- `(1:26:30) - (-1:27:14)` - update onClick setTogggleDrawer to use callback function. React best practices:
+
+```js
+{
+  /* (1:26:30) - use callback function to handle previous state of toggleDrawer with prev, common react best practice */
+}
+<img
+  src={menu}
+  alt="menu"
+  className="w-[34px] h-[px] object-contain cursor-pointer"
+  // onClick={() => setToggleDrawer(!toggleDrawer)}
+  onClick={() => setToggleDrawer((prev) => !prev)}
+/>;
+```
+
+- completed Navbar and Sidebar.jsx components at `(1:27:51)`
+
+13. Build out Home Component `(1:27:54)`
+
+    - x
 
 ---
 
