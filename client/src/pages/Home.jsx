@@ -1,5 +1,7 @@
-// (49:57)
-import React from 'react'
+// (49:57) setup
+// (1:XX:XX) - setup import statements
+import React, { useState } from 'react'
+
 
 const Home = () => {
   return (

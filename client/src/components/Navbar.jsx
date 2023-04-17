@@ -46,7 +46,7 @@ const Navbar = () => {
               {/* (1:12:55) - Nothing renders to UI, b/c we are just sending props. Now receive and display these props in the CustomButton.jsx Component */}
               <CustomButton 
                   btnType="button"
-                  title={address ? 'Send Your Prescription' : 'Connect Your Wallet'}
+                  title={address ? 'Create a Prescription' : 'Connect Your Wallet'}
                   styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
                   handleClick={() => {
                     if(address) navigate('create-campaign')

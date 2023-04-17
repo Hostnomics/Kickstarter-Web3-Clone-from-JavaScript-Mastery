@@ -284,9 +284,77 @@ export const navlinks = [
 
 - completed Navbar and Sidebar.jsx components at `(1:27:51)`
 
-13. Build out Home Component `(1:27:54)`
+13. Build out CreateCampaign page component so we can then build out the Home Component which displays all of our campains `(1:27:54)`
 
-    - x
+    - `(1:28:40)` Add Route to Profile, CreateCampaign and CampaignDetails.
+      - CampaignDetails takes an id, like in laravel:
+        - `<Route path="/campaign-details/:id" element={ <CampaignDetails /> } />`
+
+```js
+<Routes>
+  {/* (49:20) Added Routes and Home Route  */}
+  <Route path="/" element={<Home />} />
+  {/* (1:28:40) Added Other Routes  */}
+  <Route path="/profile" element={<Profile />} />
+  <Route path="/create-campaign" element={<CreateCampaign />} />
+  {/* (1:28:40) Campaign Details uses ':id'  */}
+  <Route path="/campaign-details/:id" element={<CampaignDetails />} />
+</Routes>
+```
+
+- `(1:30:20)` - Start building out `pages/CreateCampaign.jsx`
+
+## Import Ethers into our frontend (1:31:14)
+
+- `(1:31:12)` - [**IMPORT ETHERS at (1:31:22)**](https://youtu.be/BDCT6TYLYdI?t=5472) -
+
+  - `import { ethers } from 'ethers`
+
+  - `(1:31:40)` - import the 'checkIfImage' utility from our '/utils/index.js' `checkIfImage` function.
+  - `(1:32:18)` - **form, setForm useState hook**, initialized to an object.
+  - `(1:35:16)` - Start building out our form on `src/pages/CreateCampaign.jsx`.
+    - Set onSubmit to our custom handleSubmit function:
+      - `<form onSubmit={handleSubmit}>`
+  - `(1:35:50)` - tailwind css settings so each input appears one after the other:
+    - `<form onSubmit={handleSubmit} className="w-full mt-[65px] flex flex-col gap-[30px]">`
+  - `(1:36:15)` - Create 1/2 width inputs for name and campaign title
+
+- `(1:36:39)` - Create FormField component
+  - `<FormField />`
+  - `(1:37:25)` - Set the **props** we want to pass to `components/FormField.jsx` in `CreateCampaign.jsx`
+    - set the props for the first two form fields, name and campaign title:
+    - For now, set the handleChange to be an empty call back function `handleChange={() => {}}`
+
+```js
+{
+  /* (1:35:16) - Start form. Set onSubmit to our custom handleSubmit function above */
+}
+<form
+  onSubmit={handleSubmit}
+  className="w-full mt-[65px] flex flex-col gap-[30px]"
+>
+  {/* (1:36:15) - Create 1/2 width inputs for name and campaign title */}
+  <div className="flex flex-wrap gap-[40px]">
+    {/* (1:36:39) - create form field component. (1:37:26) - set the props. Set up handleChange as empty call back function at first "handleChange={() => {}}" */}
+    <FormField
+      labelName="Your Name *"
+      placeholder="John Doe"
+      inputType="text"
+      value={form.name}
+      handleChange={() => {}}
+    />
+    <FormField
+      labelName="Campaign Title *"
+      placeholder="Write a title"
+      inputType="text"
+      value={form.title}
+      handleChange={() => {}}
+    />
+  </div>
+</form>;
+```
+
+- x
 
 ---
 
