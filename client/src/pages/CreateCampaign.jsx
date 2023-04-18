@@ -41,9 +41,11 @@ const CreateCampaign = () => {
   }
 
 // (1:35:28) - create custom handleSubmit (regular) function for our form below, 
-  const handleSubmit = () => {
-    // (1:XX:XX) - completed handleSubmit logic:
+  const handleSubmit = (e) => {
+    // (1:51:10) - prevent default page reload (don't want page to reload with react)
+    e.preventDefault(); 
 
+    console.log(form); //check  console that all the fields are present (1:52:50)
   }
 
   return (
@@ -116,6 +118,19 @@ const CreateCampaign = () => {
                       // handleChange={() => {}}
                       handleChange={(e) => handleFormFieldChange('deadline', e)}
                     />
+              </div>
+
+
+                    <FormField 
+                      labelName="Campaign image *"
+                      placeholder="Place image URL of your campaign here"
+                      inputType="url"
+                      value={form.image}
+                      // handleChange={() => {}}
+                      handleChange={(e) => handleFormFieldChange('image', e)}
+                    />
+
+{/* https://www.reuters.com/legal/dominions-defamation-case-against-fox-poised-trial-after-delay-2023-04-18/ */}
 
           {/* (1:47:28) - Add a Submit Button with our existing CustomButton component */}
                   <div className="flex justify-center items-center mt-[40px]">                
@@ -126,7 +141,7 @@ const CreateCampaign = () => {
                       />
                   </div>
 
-              </div>
+              
           </form>
     </div>
   )

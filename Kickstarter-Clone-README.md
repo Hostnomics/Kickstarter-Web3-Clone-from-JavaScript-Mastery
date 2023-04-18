@@ -357,9 +357,40 @@ export const navlinks = [
 - `(1:39:00) to (1:43:06)` - Create `components/FormField.jsx`
 
 - CreateCampaign
+
   - 1:47:56 - create Submit button using our existing CustomButton component
   - `(1:48:27)` - Keep track of our form values with `handleFormFieldChange()` function
   - `(1:49:38)` - Use/call our `handleFormFieldChange(fieldName, e)`
+
+    - `(1:51:10)` - Complete the `handleSubmit()` function logic for our form.
+      - prevent default page reload: `e.preventDefault();`
+
+- `(1:51:51)` - MAKE SURE TO **pass the event** to `handleSubmit = (e) => {}`
+
+```js
+const handleSubmit = (e) => {
+  // (1:51:10) - prevent default page reload (don't want page to reload with react)
+  e.preventDefault();
+
+  console.log(form); //check  console that all the fields are present (1:52:50)
+};
+
+// The form's onSubmit only has to call the function, no param required
+<form
+  onSubmit={handleSubmit}
+  className="w-full mt-[65px] flex flex-col gap-[30px]"
+></form>;
+```
+
+- `(1:53:35)` Console Log form field input:
+
+![React Form Field Data](https://imgur.com/HAK49mD.png)
+
+## Pass Form Data To Our Smart Contract `(1:53:53)`
+
+14. Use one single file to contain all of our smart contract interactions:
+    - Create **context/index.js**:
+    - x
 
 ---
 
