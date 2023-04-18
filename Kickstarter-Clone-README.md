@@ -354,7 +354,12 @@ export const navlinks = [
 </form>;
 ```
 
-- x
+- `(1:39:00) to (1:43:06)` - Create `components/FormField.jsx`
+
+- CreateCampaign
+  - 1:47:56 - create Submit button using our existing CustomButton component
+  - `(1:48:27)` - Keep track of our form values with `handleFormFieldChange()` function
+  - `(1:49:38)` - Use/call our `handleFormFieldChange(fieldName, e)`
 
 ---
 

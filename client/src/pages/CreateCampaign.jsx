@@ -29,6 +29,17 @@ const CreateCampaign = () => {
     image: ''
   })
 
+// (1:48:43) - Add handleFormFieldChange to keep track of our form values
+  // takes keypress event as param
+  const handleFormFieldChange = (fieldName, e) => {
+    // (1) first spread out the entire form '...form' and 
+    // (2) then only change the special type of the field that changed, which we pass in as param 'fieldName'
+    // (3) target is stored in e.target.value
+    setForm({ ...form, [fieldName]: e.target.value})
+
+    
+  }
+
 // (1:35:28) - create custom handleSubmit (regular) function for our form below, 
   const handleSubmit = () => {
     // (1:XX:XX) - completed handleSubmit logic:
@@ -56,19 +67,67 @@ const CreateCampaign = () => {
                     placeholder="John Doe"
                     inputType="text"
                     value={form.name}
-                    handleChange={() => {}}
+                    // handleChange={() => {}} - (1:49:50) - use handleFormFieldChange passing in 'name' for fieldName b/c that's what we called it in the state
+                    handleChange={(e) => handleFormFieldChange('name', e)}
                   />
                   <FormField 
                     labelName="Campaign Title *"
                     placeholder="Write a title"
                     inputType="text"
                     value={form.title}
-                    handleChange={() => {}}
+                    // handleChange={() => {}} (1:50:02)- handleFormFieldChange here takes 'title' for param fieldName
+                    handleChange={(e) => handleFormFieldChange('title', e)}
                   />
               </div>
+        {/* (1:43:35) - Add textarea input outside the Name and Title div  */}
+                  <FormField 
+                    labelName="Story *"
+                    placeholder="Write your story"
+                    // inputType="text"
+                    isTextArea
+                    value={form.description}
+                    // handleChange={() => {}} (1:50:10) - handleFormFieldChange here takes 'description' for param fieldName
+                    handleChange={(e) => handleFormFieldChange('description', e)}
+                  />             
 
+
+        {/* Ad - call to action (-1:46:15) */}
+              <div className="w-full flex justify-start items-center p-4 bg-[#8c6dfd] h-[120px] rounded-[10px]">
+                <img src={money} alt="money bag" className="w-[40px] h-[40px] object-contain" />
+                <h4 className="font-epilogue font-bold text-[25px] text-white ml-[20px]">You will get 100% of the raised amount</h4>
+              </div>
+
+         {/* (1:46:31) - Copy div with name and title inputs and use for ETH Goal amount and End Date */}
+              <div className="flex flex-wrap gap-[40px]">
+                    <FormField 
+                      labelName="Goal *"
+                      placeholder="MATIC 0.50"
+                      inputType="text"
+                      value={form.target}
+                      // handleChange={() => {}} (1:50:20) - 'target' param
+                      handleChange={(e) => handleFormFieldChange('target', e)}
+                    />
+
+                    <FormField 
+                      labelName="End Date *"
+                      placeholder="End Date"
+                      inputType="date"
+                      value={form.deadline}
+                      // handleChange={() => {}}
+                      handleChange={(e) => handleFormFieldChange('deadline', e)}
+                    />
+
+          {/* (1:47:28) - Add a Submit Button with our existing CustomButton component */}
+                  <div className="flex justify-center items-center mt-[40px]">                
+                      <CustomButton 
+                          btnType="submit"
+                          title="Submit new Rx campaign"
+                          styles="bg-[#1dc071]"
+                      />
+                  </div>
+
+              </div>
           </form>
-
     </div>
   )
 }
