@@ -11,6 +11,10 @@ import { CustomButton, FormField } from '../components'
 // (1:31:40) - import the 'checkIfImage' utility from our '/utils/index.js' checkIfImage() function. 
 import { checkIfImage } from '../utils'
 
+// (2:03:14) - import our `useStateContext` we created in `/context/index.jsx`:
+import { useStateContext } from '../context'
+
+
 
 const CreateCampaign = () => {
   //(1:31:46) - initialize our useNavigate() hook call
@@ -19,6 +23,10 @@ const CreateCampaign = () => {
   // (1:31:58) - initialize our states
   // useState snippet called isLoading
   const [isLoading, setIsLoading] = useState(false)
+
+// (2:03:17) - set createCampaign from imported useStateContext
+  const { CreateCampaign } = useStateContext()
+
 //(1:32:18) - form useState hook, initialized to an object
   const [form, setForm] = useState({
     name: '',
@@ -28,6 +36,9 @@ const CreateCampaign = () => {
     deadline: '',
     image: ''
   })
+
+
+
 
 // (1:48:43) - Add handleFormFieldChange to keep track of our form values
   // takes keypress event as param
@@ -40,12 +51,37 @@ const CreateCampaign = () => {
     
   }
 
-// (1:35:28) - create custom handleSubmit (regular) function for our form below, 
-  const handleSubmit = (e) => {
-    // (1:51:10) - prevent default page reload (don't want page to reload with react)
-    e.preventDefault(); 
 
-    console.log(form); //check  console that all the fields are present (1:52:50)
+
+// (1:35:28) - create custom handleSubmit (regular) function for our form below, 
+// (2:03:55) - make `handleSubmit` async since smart contract calls do take time.
+  // const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+
+        // (1:51:10) - prevent default page reload (don't want page to reload with react)
+        e.preventDefault(); 
+
+        // (2:05:36) - Validate URL input with `checkIfImage` function in `constants/index.js`:
+        checkIfImage(form.image, async (exists) => {
+            if(exists){
+                  setIsLoading(true)
+                  // (2:04:05) - spread the form and change target from human readable to wei:
+                  await createCampaign({
+                    ...form,
+                    target: ethers.utils.parseUnits(form.target, 18)
+                  })
+                  setIsLoading(false)
+
+                  //navigate to home route to see it on the dashboard:  (-2:05:54)
+                  navigate('/')
+            }
+        })
+            
+
+      // (2:02:54) -  call a function (pass form to `context/index.js/StateContextProvider`)
+        console.log(form); //check  console that all the fields are present (1:52:50)
+
+
   }
 
   return (
@@ -145,6 +181,6 @@ const CreateCampaign = () => {
           </form>
     </div>
   )
-}
+} // end of CreateCampaign
 
 export default CreateCampaign

@@ -389,12 +389,54 @@ const handleSubmit = (e) => {
 ## Pass Form Data To Our Smart Contract `(1:53:53)`
 
 14. Use one single file to contain all of our smart contract interactions:
-    - Create **context/index.js**:
-    - x
+    - Create **context/index.jsx**:
+    - import utilites we need from `@thirdweb-dev/react`
+    - import ethers
+    - `(1:55:19)` - CREATE AND EXPORT OUR CONTEXT PROVIDER:
+      - **FORMAT**: `export const StateProvider = ({ children }) => {}`
+      - **IMPLEMENTED:** `export const StateContextProvider = ({ children }) => {}`
+
+### Two different ways to call [**WRITE FUNCTIONS**](https://thirdweb.com/mumbai/0x75D37883ae821720cC6fb09619Eb76CCBCA65Cf4/explorer) hosted on Alchemy `(1:56:06)`
+
+- We have two WRITE functions in our contract:
+  - `createCampaign`
+  - `donateToCampaign`
+
+1. first, use **mutateAsync** as follows:
+
+```js
+// (1:56:25): const mutateAsync: and set to createCampaign to which we set equal to
+// useContractWrite() and pass the contract and specify the name of the write function
+const { mutateAsync: createCampaign } = useContractWrite(
+  contract,
+  "createCampaign"
+);
+```
+
+2. (1:56:45) - the other way is just to call the contract.call() and then pass everything you need.
+
+### Publish Function (1:57:26)
+
+- Integrated Files: **export StateContentProvider** talks to **CreateCampaign()** _handleSubmit()_
+
+  - `context/index.jsx` -
+  - `/main.jsx` - wrap App with`<StateContextProvider>` tags at `(2:01:51)`
+  - `components/CreateCampaign.jsx` - build out **handleSubmit()** so we can access <StateContext.Provider value={{ address, contract, createCampaign: publishCampaign }}> at `(2:02:46)`.
+
+  - `(2:02:54)` - pass form to `context/index.js/StateContextProvider`
+
+- Updates to `CreateCampaign.jsx`:
+
+1. `(2:03:14)` - import our `useStateContext` we created in `/context/index.jsx`:
+
+   - `import { useStateContext } from '../context'`
+
+2. `(2:03:17)` - set createCampaign from imported useStateContext
+   - `const { CreateCampaign } = useStateContext()`
 
 ---
 
-d
+### As an aside, find NFT free transfer option
 
 **NFT Taxes** to keep in mind:
 
