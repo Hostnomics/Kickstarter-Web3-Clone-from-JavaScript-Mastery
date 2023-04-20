@@ -4,23 +4,23 @@
 
 1. Install the thirdweb project files:
 
-   > npx create thirdweb@latest --contract
+   > npx create thirdweb@latest **--contract**
 
 2. Install dotenv (9:22):
 
-   > npm instal dotenv
+   > npm install dotenv
 
 3. Add React Router Dom:
 
    > npm install react-router-dom
 
-4. Deploy Solidity Contract:
+4. Deploy Solidity Contract: (_`npm thirdweb deploy`_ [_from thirdweb tutorial here_](https://youtu.be/cKc8JVl_u30?t=391))
 
    > npm run deploy
 
 5. Create frontend app, from within the `/client` directory: `(34:35)`
 
-   > npx thirdweb create --app
+   > npx thirdweb create **--app**
 
 6. Install TailwindCSS. See the [Tail wind docs for vite](https://tailwindcss.com/docs/guides/vite)
 
@@ -433,6 +433,23 @@ const { mutateAsync: createCampaign } = useContractWrite(
 
 2. `(2:03:17)` - set createCampaign from imported useStateContext
    - `const { CreateCampaign } = useStateContext()`
+
+---
+
+15. `(2:07:23)` - in `components/Navbar.jsx` update our hardcoded address to the users addresss and update the **hardcoded 'connect()' string** with the function to connect to the user's wallet.
+    - `(2:07:54)` - `import { useStateContext } from '../context'`
+    - `(2:08:07)` - `const { connect, address } = useStateContext()`
+    - `(2:09:10)` - define **connect()** function in `context/index.jsx` and then we can call it in our **components/Navbar.jsx**
+      - `connect()`
+
+```js
+//In Navbar CustomButton:
+    handleClick={() => {
+        if(address) navigate('create-campaign')
+        else connect();
+    }}
+
+```
 
 ---
 

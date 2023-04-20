@@ -8,6 +8,8 @@ import { logo, menu, search, thirdweb } from '../assets'
 import { navlinks } from '../constants'
 import { ConnectWallet } from '@thirdweb-dev/react'
 
+// (2:07:54) - import our `useStateContext` from `/context/index.jsx` so we can check to see if the user has connected their wallet
+import { useStateContext } from '../context'
 
 const Navbar = () => {
   // initialize our navigate function (1:05:20)
@@ -18,7 +20,10 @@ const Navbar = () => {
   const [toggleDrawer, setToggleDrawer] = useState(false)
 
   //(1:11:02) - Temporarily hardcode address for button title
-  const address = '0x38x..3838'
+      // const address = '0x38x..3838'
+// (2:08:07) - Get the connect function and address from the context and remove our hardcoded address above.
+  const { connect, address } = useStateContext()
+
 
   return (
     // set className at (1:06:10 -1:06:58)
@@ -50,7 +55,8 @@ const Navbar = () => {
                   styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
                   handleClick={() => {
                     if(address) navigate('create-campaign')
-                    else 'ConnectWallet()' //replace later with connect wallet function (-1:12:45)
+                    // else 'ConnectWallet()' //replace later with connect wallet function (-1:12:45)
+                    else connect()  // updated (2:09:10)
                   }}
               />
 
@@ -121,7 +127,8 @@ const Navbar = () => {
                                   styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
                                   handleClick={() => {
                                     if(address) navigate('create-campaign')
-                                    else 'ConnectWallet()' //replace later with connect wallet function (-1:12:45)
+                                    // else 'ConnectWallet()' //replace later with connect wallet function (-1:12:45)
+                                    else connect()  // updated (2:09:10)
                                   }}
                               />
                         </div>

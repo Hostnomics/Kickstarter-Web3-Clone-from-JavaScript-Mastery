@@ -19,7 +19,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // (38:10)- render ThirdWebProvider as a wrapper for our <App /> component:
 // (38:42) - wrap our <App /> component in Router tags as well:
 root.render(
-    <ThirdwebProvider desiredChainId={ChainId.Mumbai}>
+    // <ThirdwebProvider desiredChainId={ChainId.Mumbai}>
+    <ThirdwebProvider activeChain="mumbai">
         <Router>
 {/* (2:01:51) - wrap App with <StateContextProvider> from `context/index.js` */}
             <StateContextProvider>

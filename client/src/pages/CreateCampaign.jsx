@@ -25,7 +25,7 @@ const CreateCampaign = () => {
   const [isLoading, setIsLoading] = useState(false)
 
 // (2:03:17) - set createCampaign from imported useStateContext
-  const { CreateCampaign } = useStateContext()
+  const { createCampaign } = useStateContext()
 
 //(1:32:18) - form useState hook, initialized to an object
   const [form, setForm] = useState({
@@ -66,14 +66,16 @@ const CreateCampaign = () => {
             if(exists){
                   setIsLoading(true)
                   // (2:04:05) - spread the form and change target from human readable to wei:
-                  await createCampaign({
-                    ...form,
-                    target: ethers.utils.parseUnits(form.target, 18)
-                  })
+                  // await CreateCampaign({...form, target: ethers.utils.parseUnits(form.target, 18)})
+                  await createCampaign({ ...form, target: ethers.utils.parseUnits(form.target, 18)})
                   setIsLoading(false)
 
                   //navigate to home route to see it on the dashboard:  (-2:05:54)
                   navigate('/')
+            } else {
+              alert("Provide valid image URL")
+              //reset image URL field to blank, but preserve the state of all other inputs in our form:
+              setForm({ ...form, image: '' })
             }
         })
             
