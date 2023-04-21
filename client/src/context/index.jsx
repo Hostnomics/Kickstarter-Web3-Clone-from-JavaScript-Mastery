@@ -54,6 +54,16 @@ export const StateContextProvider = ({ children }) => {  //regular react functio
                 }
         } //end of publishCampaign fn
 
+// (2:12:39) - create getCampaigns function to be called from pages/Home.jsx 
+        const getCampaigns = async () => {
+            const campagins = await contract.call('getCampaigns')
+
+            console.log(campagins)
+
+        } //end of getCampaigns function
+
+
+
     // (2:00:18) - return  to pass it from the context to our CreateCampaign component page
     // this StateContextProvider has to return something, so return a StateContext.Provider (-2:00:15)
         return (
@@ -75,6 +85,8 @@ export const StateContextProvider = ({ children }) => {  //regular react functio
         )
         
 } //end of export StateContextProvider
+
+
 
 
 // (2:01:10) - IN ORDER TO USE StateContext.Provider, 

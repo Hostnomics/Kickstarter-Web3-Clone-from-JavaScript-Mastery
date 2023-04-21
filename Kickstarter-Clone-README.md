@@ -451,6 +451,43 @@ const { mutateAsync: createCampaign } = useContractWrite(
 
 ```
 
+16. `(2:11:08)` Build out Home Component
+
+- `(2:12:39)` - Create the **getCampaigns()** function in `context/index.jsx`
+  - `const campaigns = await contract.call('_name_of_solidity_function_')`
+
+### getCampaigns with .call() function (2:13:00)
+
+```js
+
+// from context/index.jsx:
+// (2:12:39) - create getCampaigns function to be called from pages/Home.jsx
+    const getCampaigns = async () => {
+        const campagins = await contract.call('getCampaigns')
+    } //end of getCampaigns function
+
+// solidity function in `web3/contracts/CrowdFunding.sol`
+    // (23:05) - no parameters b/c we want to return all campaigns
+    function getCampaigns() public view returns (Campaign[] memory) {
+        //return all campaigns from memory and assign to variable `allCampaigns`
+        //(23:57) - variable allCampaigns is of type array of multiple campaign structures.
+        // empty array with as many empty elements as there are number of campaigns, initially set to zero and incremented
+        Campaign[] memory allCampaigns = new Campaign[](numberOfCampaigns);
+
+        // (24:38)
+        for (uint i = 0; i < numberOfCampaigns; i++) {
+            //fetch specfic campaign from storage:
+            Campaign storage item = campaigns[i];
+            //populate it straight into our allCampaigns array (-25:15)
+            allCampaigns[i] = item;
+        }
+
+        return allCampaigns;
+    }
+
+
+```
+
 ---
 
 ### As an aside, find NFT free transfer option
