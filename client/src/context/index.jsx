@@ -60,6 +60,19 @@ export const StateContextProvider = ({ children }) => {  //regular react functio
 
             console.log(campagins)
 
+            // (2:15:50) - parse through our campaigns and instantly return "()" an object "campagins.map(() => ({}))"
+                                    //campaign array object, i = index of our campaign
+            const parsedCampaigns = campagins.map((campaign, i) => ({
+               owner: campaign.owner,
+               title: campaign.title,
+               description: campaign.description,
+               target: ethers.utils.formatEther(target.toString()),
+               deadline: deadline.toNumber(),
+               amountCollected: ethers.utils.formatEther(amountCollected.toString()),
+               image: campaign.image,
+               pId: i
+            }))
+
         } //end of getCampaigns function
 
 
@@ -71,12 +84,14 @@ export const StateContextProvider = ({ children }) => {  //regular react functio
             // (2:09:06) - forgot to add connect function.
             // createCampaign //but here createCampaign is the name of the contract call, so we need to refer to our publishCampign function:
                     // (2:00:53) - So, rename publishCampaign AS createCampaign like this: `createCampaign: publishCampaign`
+                    // (2:13:26) - add newly created getCampaigns function to StateContext values
             <StateContext.Provider
                 value={{ 
                     address,
                     contract,             
                     connect,                 
-                    createCampaign: publishCampaign               
+                    createCampaign: publishCampaign,
+                    getCampaigns               
                      }}
             >
                 {/* (2:01:01) - render {children} b/t StateContext.Provider  */}

@@ -15,6 +15,22 @@ const Home = () => {
 //get some data from our context and go back to `context/index.jsx` and create function getCampaigns (-2:12:26)
   const { address, contract, getCampaigns } = useStateContext()
 
+
+
+// (2:14:21) - create fetchCampaigns
+  const fetchCampaigns = async () => {
+    setIsLoading(true)
+    const data = await getCampaigns()
+    setCampaigns(data)
+    setIsLoading(false)
+  } //(-2:15:05)
+
+// (2:13:41) - call getCampaigns function with useEffect hook: "useEffect(() => {}, [])"
+  useEffect(() => {
+    // if(contract) await getCampaigns() // can't call await getCampaigns() here
+    if(contract) fetchCampaigns() // (2:15:08)
+  }, [address, contract])
+
   return (
     <div>Home Component</div>
   )
