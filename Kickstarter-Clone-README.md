@@ -488,6 +488,26 @@ const { mutateAsync: createCampaign } = useContractWrite(
 
 ```
 
+17. Parse the campaign array object at 2:15 to 2:18:19 in `getCampaigns()` fn in `context/index.jsx`:
+
+```js
+amountCollected: "0.0";
+deadline: 1682553600000;
+description: "The beta Rx Web3 platform will be live for testing at Consensus in April 2023 in the ATX!!  ";
+image: "https://pbs.twimg.com/profile_banners/44514164/1591509910/600x200";
+owner: "0xfa1B88F6a4Efa3Fc139492DC1B9cc5A3d66fDDC9";
+pId: 0;
+target: "5.0";
+title: "Consensus Austin 2023";
+```
+
+18. `(2:19:14)` Create `components/DisplayCampaigns.jsx`:
+
+19. `(2:20:32)` - Build out DisplayCampaigns component
+
+- `(2:24:11)` - Loop through campaigns and show them as card.
+-
+
 ---
 
 ### As an aside, find NFT free transfer option

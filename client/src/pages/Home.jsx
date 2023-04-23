@@ -5,6 +5,9 @@ import React, { useState, useEffect } from 'react'
 //bring in our useStateContext from `context/index.jsx`
 import { useStateContext } from '../context'
 
+// (2:19:27) import new DisplayCampaigns in components directory: 
+import { DisplayCampaigns } from '../components'
+
 const Home = () => {
 
 //(2:11:53) - set state
@@ -32,7 +35,13 @@ const Home = () => {
   }, [address, contract])
 
   return (
-    <div>Home Component</div>
+    // <div>Home Component</div>
+    // (2:19:55) - Use <DisplayCampaigns /> tag like a forEach loop. (use in Home and Profile.jsx page)
+    <DisplayCampaigns 
+      title="All Campaigns"
+      isLoading={isLoading}
+      campaigns={campaigns}
+    />
   )
 }
 

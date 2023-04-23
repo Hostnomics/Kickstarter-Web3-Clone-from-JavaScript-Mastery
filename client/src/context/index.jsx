@@ -58,7 +58,7 @@ export const StateContextProvider = ({ children }) => {  //regular react functio
         const getCampaigns = async () => {
             const campagins = await contract.call('getCampaigns')
 
-            console.log(campagins)
+            console.log(`log before parsing:`, campagins)
 
             // (2:15:50) - parse through our campaigns and instantly return "()" an object "campagins.map(() => ({}))"
                                     //campaign array object, i = index of our campaign
@@ -66,12 +66,16 @@ export const StateContextProvider = ({ children }) => {  //regular react functio
                owner: campaign.owner,
                title: campaign.title,
                description: campaign.description,
-               target: ethers.utils.formatEther(target.toString()),
-               deadline: deadline.toNumber(),
-               amountCollected: ethers.utils.formatEther(amountCollected.toString()),
+               target: ethers.utils.formatEther(campaign.target.toString()),
+               deadline: campaign.deadline.toNumber(),
+               amountCollected: ethers.utils.formatEther(campaign.amountCollected.toString()),
                image: campaign.image,
                pId: i
             }))
+
+            console.log('log parsed Campaigns:', parsedCampaigns)
+
+            return parsedCampaigns
 
         } //end of getCampaigns function
 
