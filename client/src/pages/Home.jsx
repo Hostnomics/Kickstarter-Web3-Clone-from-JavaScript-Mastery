@@ -22,17 +22,17 @@ const Home = () => {
 
 // (2:14:21) - create fetchCampaigns
   const fetchCampaigns = async () => {
-    setIsLoading(true)
-    const data = await getCampaigns()
-    setCampaigns(data)
-    setIsLoading(false)
+    setIsLoading(true);
+    const data = await getCampaigns();
+    setCampaigns(data);
+    setIsLoading(false);
   } //(-2:15:05)
 
 // (2:13:41) - call getCampaigns function with useEffect hook: "useEffect(() => {}, [])"
+    // if(contract) await getCampaigns() // can't call await getCampaigns() here  // (2:15:08)
   useEffect(() => {
-    // if(contract) await getCampaigns() // can't call await getCampaigns() here
-    if(contract) fetchCampaigns() // (2:15:08)
-  }, [address, contract])
+    if(contract) fetchCampaigns(); 
+  }, [address, contract]);
 
   return (
     // <div>Home Component</div>

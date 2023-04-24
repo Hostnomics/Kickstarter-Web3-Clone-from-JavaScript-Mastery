@@ -415,6 +415,21 @@ const { mutateAsync: createCampaign } = useContractWrite(
 
 2. (1:56:45) - the other way is just to call the contract.call() and then pass everything you need.
 
+# contract.call() ended up being the best solution for us:
+
+Couldn't get his way to work. Used the [ThirdWeb Docs for just straight JavaScript in our try{} clause](https://thirdweb.com/mumbai/0x27dbc014EB54a6Ba0b1F69F04A97D666E10d22b0/code)
+
+```js
+const data = await contract.call("createCampaign", [
+  address,
+  form.title,
+  form.description,
+  form.target,
+  new Date(form.deadline).getTime(),
+  form.image,
+]);
+```
+
 ### Publish Function (1:57:26)
 
 - Integrated Files: **export StateContentProvider** talks to **CreateCampaign()** _handleSubmit()_
@@ -505,8 +520,15 @@ title: "Consensus Austin 2023";
 
 19. `(2:20:32)` - Build out DisplayCampaigns component
 
-- `(2:24:11)` - Loop through campaigns and show them as card.
--
+    - `(2:24:11)` - Loop through campaigns and show them as card.
+
+20. `(2:26:01)` - create `components/FundCard.jsx` component.
+
+21. `(2:41:28)` - build out `pages/Profile.jsx` to show individual Addy's Campaigns/Rxs.
+
+22. `(~2:42:ish)` - Profile
+
+23. `(2:44:30)` - CampaignDetails
 
 ---
 

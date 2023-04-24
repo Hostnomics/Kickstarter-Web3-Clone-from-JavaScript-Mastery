@@ -1,10 +1,14 @@
 //created (2:19:14)
-import React from 'react'
+import React from 'react';
 
 // (2:20:32) - import statements - click on card, go to CampaignDetails view with useNavigate
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-import { loader } from '../assets'
+import { loader } from '../assets';
+
+// (2:26:27) - import FundCard component (in same directory)
+import FundCard from './FundCard';
+
 
 const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
   
@@ -12,7 +16,7 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
 
 // (2:25:12) - create custom handleNavigate function for our <FundCard /> below
     const handleNavigate = (campaign) => {
-        navigate(`/campaign-details/${campaign.id}`, { state: campaign })
+        navigate(`/campaign-details/${campaign.title}`, { state: campaign })
     }
 
     return (
