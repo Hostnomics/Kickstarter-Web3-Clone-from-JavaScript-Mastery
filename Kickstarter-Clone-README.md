@@ -1,5 +1,7 @@
 # Kickstarter Clone from [JavaScript Mastery's YouTube Tutorial.](https://www.youtube.com/watch?v=BDCT6TYLYdI&t)
 
+
+
 ## Commands
 
 1. Install the thirdweb project files:
@@ -31,6 +33,8 @@
 7. Run a local dev server: _(CTRL/CMD Click the link provided)_
 
    > npm run dev
+
+   > yarn dev
 
 ---
 
