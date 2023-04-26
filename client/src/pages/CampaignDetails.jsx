@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 
 //import useLocation coming from react-router-dom
 // from the locaiton, we will pick up the state that we sent through the routing
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 
 //local imports
 import { useStateContext } from '../context';
-import { CustomButton, CountBox } from '../components'; 
+import { CustomButton, CountBox, Loader } from '../components'; 
 import { calculateBarPercentage, daysLeft } from '../utils'; 
 import { thirdweb } from '../assets';
 
@@ -17,15 +17,44 @@ const CampaignDetails = () => {
 // (2:45:34) - pass/catch state through routing by calling useLocation() as a hook:
   const { state } = useLocation();
 
+
+  const navigate = useNavigate()
+
 // from components/DisplayCampaigns.jsx: 
 // (2:25:12)   const handleNavigate = (campaign) => {navigate(`/campaign-details/${campaign.title}`, { state: campaign }) }
-  const { getDonations, contract, address} = useStateContext(); 
+  const { donate, getDonations, contract, address} = useStateContext(); 
 
   const [isLoading, setIsLoading] = useState(false); 
   const [donators, setDonators] = useState([]); 
 
+  const [amount, setAmount] = useState('');
+
   const remainingDays = daysLeft(state.deadline); // deadline: 1693612800000 (for 9/2/2023 on 4/23/23)
   console.log('Here is the state object:', state); 
+
+
+// (Around 3:08:39 and on, covers the 'amount' field and the functions below to talk to our context/index.js for 'donate' and 'getDonations' functions)
+const fetchDonators = async () => {
+  const data = await getDonations(state.pId);
+
+  setDonators(data);
+}
+
+useEffect(() => {
+  if(contract) fetchDonators();
+}, [contract, address])
+
+const handleDonate = async () => {
+  setIsLoading(true);
+
+  await donate(state.pId, amount); 
+
+  navigate('/')
+  setIsLoading(false);
+}
+
+
+
 
   return (
     <div>
