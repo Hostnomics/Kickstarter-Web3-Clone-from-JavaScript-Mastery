@@ -86,6 +86,7 @@ const CreateCampaign = () => {
             value={form.target}
             handleChange={(e) => handleFormFieldChange('target', e)}
           />
+          <br></br>
           <FormField 
             labelName="End Date *"
             placeholder="End Date"
