@@ -22,7 +22,7 @@ const App = () => {
         <Navbar />
 
         <Routes>
-    {/* (49:20) Added Routes and Home Route  */}
+    {/* (49:20) Added Routes and Home Route   */}
           <Route path="/" element={ <Home /> } />
     {/* (1:28:40) Added Other Routes  */}
           <Route path="/profile" element={ <Profile /> } />

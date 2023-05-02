@@ -1,7 +1,5 @@
 # Kickstarter Clone from [JavaScript Mastery's YouTube Tutorial.](https://www.youtube.com/watch?v=BDCT6TYLYdI&t)
 
-
-
 ## Commands
 
 1. Install the thirdweb project files:
@@ -12,7 +10,7 @@
 
    > npm install dotenv
 
-3. Add React Router Dom:
+3. Add **React Router Dom**:
 
    > npm install react-router-dom
 
