@@ -539,3 +539,14 @@ title: "Consensus Austin 2023";
 **NFT Taxes** to keep in mind:
 
 ![TurboTax Note on NFT taxes](https://i.imgur.com/jV4jyRD.png)
+
+## Other Tutorials:
+
+1. SVG NFT "Image"
+
+- Thirdweb version in [How To Create OnChain NFTs With ContractKit](https://www.youtube.com/watch?v=rJQinCp1_Fw).
+- FreeCodeCamp in [Lesson 14]()
+
+2. IPFS
+
+- Thirdweb easy image upload to ipfs from [How to Upload Files to IPFS](https://www.youtube.com/watch?v=wyYkpMgEVxE)
