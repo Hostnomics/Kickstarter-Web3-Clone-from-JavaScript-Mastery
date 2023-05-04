@@ -550,3 +550,5 @@ title: "Consensus Austin 2023";
 2. IPFS
 
 - Thirdweb easy image upload to ipfs from [How to Upload Files to IPFS](https://www.youtube.com/watch?v=wyYkpMgEVxE)
+
+3. Connect React to MySQL. See https://www.youtube.com/watch?v=cYljDpkkgfM
