@@ -22,7 +22,7 @@ const CreateCampaign = () => {
 
   const handleFormFieldChange = (fieldName, e) => {
     setForm({ ...form, [fieldName]: e.target.value })
-  }
+  } 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,7 +86,7 @@ const CreateCampaign = () => {
             value={form.target}
             handleChange={(e) => handleFormFieldChange('target', e)}
           />
-          <br></br>
+         
           <FormField 
             labelName="End Date *"
             placeholder="End Date"
